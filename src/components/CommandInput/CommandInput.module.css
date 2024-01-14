@@ -4,10 +4,17 @@
   border-radius: 4px;
   width: 100%;
   max-width: 500px;
+  transition: border 0.15s ease;
+}
+
+.error {
+  border: 1px solid red;
+  transition: border 0.15s ease;
 }
 
 .input {
   all: unset;
+
   min-height: 1.5rem;
   outline: 2px solid transparent;
   outline-offset: 2px;

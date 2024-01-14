@@ -1,11 +1,26 @@
+import { useState } from "react";
 import styles from "./CommandInput.module.css";
+import commands from "../../commands/commands";
 
 const CommandInput = () => {
+  const [error, setError] = useState(false);
+
   const handleCommand = (command: string) => {
     console.log(command);
+
+    const validCommand = commands.find((c) => c.commands.includes(command));
+
+    if (validCommand) {
+      validCommand.perform();
+    } else {
+      setError(true);
+      setTimeout(() => {
+        setError(false);
+      }, 300);
+    }
   };
   return (
-    <div className={styles.container}>
+    <div className={`${styles.container} ${error ? styles.error : ""}`}>
       <form
         onSubmit={(e: React.FormEvent<HTMLFormElement>) => {
           e.preventDefault(); // Prevent the default form submission
@@ -13,7 +28,11 @@ const CommandInput = () => {
           handleCommand(inputElement?.value);
         }}
       >
-        <input className={styles.input} placeholder="Enter a command" />
+        <input
+          autoFocus={true}
+          className={styles.input}
+          placeholder="Enter a command"
+        />
       </form>
     </div>
   );
