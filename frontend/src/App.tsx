@@ -7,6 +7,7 @@ import CommandInput from "./components/CommandInput/CommandInput";
 import NavigationBar from "./components/NavigationBar/NavigationBar";
 import Blog from "./pages/Blog/Blog";
 import React from "react";
+import BlogPost from "./pages/BlogPost/BlogPost";
 
 function App() {
   return (
@@ -22,7 +23,8 @@ function App() {
         </KBarPortal>
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/blog/:slug" element={<Blog />} />
+          <Route path="/blog" element={<Blog />} />
+          <Route path="/blog/:slug" element={<BlogPost />} />
           <Route path="/contact" element={<Contact />} />
         </Routes>
       </KBarProvider>
