@@ -15,7 +15,7 @@ const Toggles = () => {
     <div>
       <Modal modalState={showModal} setModalState={setShowModal} />
       <button className={styles.button} onClick={toggleHelpModal}>
-        <IoIosHelpCircle color={"hsl(240 3.7% 15.9%)"} size="24" />
+        <IoIosHelpCircle color={"#a1a1a1"} size="24" />
       </button>
     </div>
   );

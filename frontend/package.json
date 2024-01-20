@@ -12,6 +12,7 @@
   "dependencies": {
     "@sanity/block-content-to-react": "^3.0.0",
     "@sanity/client": "^6.11.1",
+    "framer-motion": "^10.18.0",
     "geist": "^1.2.1",
     "kbar": "^0.1.0-beta.45",
     "react": "^18.2.0",

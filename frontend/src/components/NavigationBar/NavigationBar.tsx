@@ -21,8 +21,8 @@ const NavigationBar = () => {
             </NavLink>
           </li>
           <li>
-            <NavLink to="/blog" className={getNavLinkClass}>
-              Blog
+            <NavLink to="/about" className={getNavLinkClass}>
+              About
             </NavLink>
           </li>
           <li>
@@ -31,8 +31,8 @@ const NavigationBar = () => {
             </NavLink>
           </li>
           <li>
-            <NavLink to="/about" className={getNavLinkClass}>
-              About
+            <NavLink to="/blog" className={getNavLinkClass}>
+              Blog
             </NavLink>
           </li>
           <li>
