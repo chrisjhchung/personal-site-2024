@@ -1,0 +1,13 @@
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  flex-direction: column;
+  gap: 12px;
+  color: white;
+
+  * {
+    margin: 0;
+  }
+}
