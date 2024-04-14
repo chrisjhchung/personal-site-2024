@@ -7,6 +7,7 @@ const CommandInput = () => {
   const [error, setError] = useState(false);
 
   const handleCommand = (command: string) => {
+    console.log("command", command);
     const validCommand = commands.find((c) => c.commands.includes(command));
 
     if (validCommand) {

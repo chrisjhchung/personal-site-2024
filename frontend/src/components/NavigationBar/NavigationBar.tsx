@@ -13,7 +13,9 @@ const NavigationBar = () => {
   return (
     <div className={styles.navBar}>
       <div className={styles.navBarContents}>
-        <p>{found} / 10</p>
+        <div className={styles.foundContainer}>
+          <p>{found} / 10</p>
+        </div>
         <ul className={styles.navLinks}>
           <li>
             <NavLink to="/" className={getNavLinkClass} end>
