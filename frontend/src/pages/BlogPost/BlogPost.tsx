@@ -1,34 +1,47 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import BlockContent from "@sanity/block-content-to-react";
+import { client } from "../../api/client"; // Update this path
 
-const BlogPost = () => {
-  const { slug } = useParams();
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const [post, setPost] = useState<any>(null);
+interface Post {
+  title: string;
+  author: string;
+  publishedAt: string;
+  categories: string[];
+  mainImageUrl: string;
+  body: any[]; // You might want to define a more specific type for body
+}
+
+const BlogPost: React.FC = () => {
+  const { slug } = useParams<{ slug: string }>();
+  const [post, setPost] = useState<Post | null>(null);
+  const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
     const fetchPost = async () => {
       if (slug) {
-        const sanityHost = import.meta.env.VITE_SANITY_HOST;
-        const query = encodeURIComponent(
-          `*[_type == "post" && slug.current == "${slug}"]{
-            title,
-            "author": author->name,
-            publishedAt,
-            "categories": categories[]->title,
-            "mainImageUrl": mainImage.asset->url,
-            body
-          }[0]`
-        );
-        const url = `${sanityHost}/v1/data/query/production?query=${query}`;
-
         try {
-          const response = await fetch(url);
-          const data = await response.json();
-          setPost(data.result);
+          const result = await client.fetch<Post>(
+            `
+            *[_type == "post" && slug.current == $slug][0]{
+              title,
+              "author": author->name,
+              publishedAt,
+              "categories": categories[]->title,
+              "mainImageUrl": mainImage.asset->url,
+              body
+            }
+          `,
+            { slug }
+          );
+
+          setPost(result);
         } catch (error) {
-          console.error("Error fetching data:", error);
+          console.error("Error fetching post:", error);
+          setError("Failed to fetch the blog post. Please try again later.");
+        } finally {
+          setIsLoading(false);
         }
       }
     };
@@ -36,17 +49,24 @@ const BlogPost = () => {
     fetchPost();
   }, [slug]);
 
-  if (!post) return <div>Loading...</div>;
+  if (isLoading) return <div>Loading...</div>;
+  if (error) return <div>{error}</div>;
+  if (!post) return <div>Post not found</div>;
 
   return (
     <article>
       <h1>{post.title}</h1>
-      {/* Render author, categories, etc. */}
+      <p>By {post.author}</p>
+      <p>Published on: {new Date(post.publishedAt).toLocaleDateString()}</p>
+      <p>Categories: {post.categories.join(", ")}</p>
       <div>
         {post.mainImageUrl && <img src={post.mainImageUrl} alt={post.title} />}
       </div>
-      <BlockContent blocks={post.body} />
-      {/* You can pass project ID and dataset to BlockContent if needed */}
+      <BlockContent
+        blocks={post.body}
+        projectId={client.config().projectId}
+        dataset={client.config().dataset}
+      />
     </article>
   );
 };

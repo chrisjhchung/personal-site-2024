@@ -1,44 +1,55 @@
 import React, { useEffect, useState } from "react";
 import BlogCard from "../../components/BlogCard/BlogCard";
 import styles from "./Blog.module.css";
+import { client } from "../../api/client"; // Import the Sanity client
 
-const Blog = () => {
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const [posts, setPosts] = useState<any[]>([]);
+interface Post {
+  title: string;
+  name: string;
+  categories: string[];
+  authorImage: string;
+  body: any; // You might want to define a more specific type for 'body'
+}
+
+const Blog: React.FC = () => {
+  const [posts, setPosts] = useState<Post[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
     const fetchPosts = async () => {
-      const sanityHost = import.meta.env.VITE_SANITY_HOST;
-      const query = encodeURIComponent(
-        `*[_type == "post"] | order(publishedAt desc) {
-          title,
-          "author": author->name,
-          publishedAt,
-          "categories": categories[]->title,
-          "mainImageUrl": mainImage.asset->url,
-          "slug": slug.current 
-        }`
-      );
-      const url = `${sanityHost}/v1/data/query/production?query=${query}`;
+      const query = `*[_type == "post"]{
+        title,
+        "name": author->name,
+        "categories": categories[]->title,
+        "authorImage": author->image,
+        body,
+        slug,
+        mainImage
+      }`;
+
       try {
-        const response = await fetch(url);
-        const data = await response.json();
-        setPosts(data.result);
+        const result = await client.fetch(query);
+        console.log("result", result);
+        setPosts(result);
       } catch (error) {
         console.error("Error fetching data:", error);
+        setError("Failed to fetch posts. Please try again later.");
+      } finally {
+        setIsLoading(false);
       }
     };
 
     fetchPosts();
   }, []);
 
-  if (posts.length === 0) return <div>Loading...</div>;
+  if (isLoading) return <div>Loading...</div>;
+  if (error) return <div>{error}</div>;
 
   return (
     <div className={styles.container}>
-      {/* Render list of posts */}
-      {posts.map((p, index) => (
-        <BlogCard key={index} post={p} />
+      {posts.map((post, index) => (
+        <BlogCard key={post.title || index} post={post} />
       ))}
     </div>
   );

@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 interface BlogCardProps {
   post: {
     title: string;
-    author: string;
+    name: string;
     publishedAt: string;
     categories: string[];
     mainImageUrl: string;
@@ -16,13 +16,13 @@ interface BlogCardProps {
 const BlogCard = ({ post }: BlogCardProps) => {
   const navigate = useNavigate();
 
-  const { title, author, publishedAt, categories, mainImageUrl, slug } = post;
+  const { title, name, publishedAt, categories, mainImageUrl, slug } = post;
   return (
-    <div key={slug}>
+    <div key={slug?.current}>
       <button
         className={styles.card}
         onClick={() => {
-          navigate(`/blog/${slug}`);
+          navigate(`/blog/${slug?.current}`);
         }}
       >
         <img src={mainImageUrl} alt={title} />
@@ -32,7 +32,7 @@ const BlogCard = ({ post }: BlogCardProps) => {
             {category}
           </span>
         ))}
-        <p> Written by: {author ?? "...no one?"}</p>
+        <p> Written by: {name ?? "...no one?"}</p>
         <p> Published: {publishedAt ?? "some time"}</p>
       </button>
     </div>

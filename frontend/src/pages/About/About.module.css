@@ -11,3 +11,10 @@
     margin: 0;
   }
 }
+
+.header {
+  height: fit-content;
+  h1 {
+    line-height: 1;
+  }
+}

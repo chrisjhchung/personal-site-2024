@@ -1,10 +1,23 @@
 // client.ts
-import sanityClient from "@sanity/client";
+import { createClient } from "@sanity/client";
 
-console.log(import.meta.env.VITE_SANITY_HOST);
+const projectId = import.meta.env.VITE_SANITY_PROJECT_ID;
+const dataset = import.meta.env.VITE_SANITY_DATASET;
+const apiVersion = import.meta.env.VITE_SANITY_API_VERSION || "2023-05-03";
+const token = import.meta.env.VITE_SANITY_TOKEN;
 
-export default sanityClient({
-  projectId: "chrisjhchung", // you can find this in sanity.json
-  dataset: "production", // or the name you chose in step 1
-  useCdn: true, // `false` if you want to ensure fresh data
+if (!projectId || !dataset) {
+  throw new Error(
+    "Missing Sanity project ID or dataset. Check your environment variables."
+  );
+}
+
+export const client = createClient({
+  projectId,
+  dataset,
+  apiVersion,
+  useCdn: false,
+  token,
 });
+
+export default client;
