@@ -8,19 +8,18 @@ interface ModalProps {
 }
 
 const Modal = ({ modalState, setModalState }: ModalProps) => {
-  const handleKeyPress = (event: KeyboardEvent) => {
-    if (event.key === "Escape") {
-      setModalState(false);
-    }
-  };
-
   useEffect(() => {
+    const handleKeyPress = (event: KeyboardEvent) => {
+      if (event.key === "Escape") {
+        setModalState(false);
+      }
+    };
     window.addEventListener("keydown", handleKeyPress);
 
     return () => {
       window.removeEventListener("keydown", handleKeyPress);
     };
-  }, []);
+  }, [setModalState]);
 
   return (
     <div className={`${modalState ? styles.visible : styles.hidden}`}>

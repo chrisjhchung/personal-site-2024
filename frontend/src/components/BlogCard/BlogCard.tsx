@@ -2,18 +2,7 @@ import React from "react";
 import styles from "./BlogCard.module.css";
 import { useNavigate } from "react-router-dom";
 
-interface BlogCardProps {
-  post: {
-    title: string;
-    name: string;
-    publishedAt: string;
-    categories: string[];
-    mainImageUrl: string;
-    slug: string;
-  };
-}
-
-const BlogCard = ({ post }: BlogCardProps) => {
+const BlogCard = ({ post }) => {
   const navigate = useNavigate();
 
   const { title, name, publishedAt, categories, mainImageUrl, slug } = post;

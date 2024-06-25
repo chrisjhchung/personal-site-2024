@@ -1,5 +1,4 @@
 import React, { useEffect } from "react";
-import CommandInput from "../../components/CommandInput/CommandInput";
 import Toggles from "../../components/Toggles/Toggles";
 import styles from "./Home.module.css";
 const Home = () => {

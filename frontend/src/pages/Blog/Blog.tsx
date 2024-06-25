@@ -5,10 +5,11 @@ import { client } from "../../api/client"; // Import the Sanity client
 
 interface Post {
   title: string;
-  name: string;
+  author: string;
+  publishedAt: string;
   categories: string[];
-  authorImage: string;
-  body: any; // You might want to define a more specific type for 'body'
+  mainImageUrl: string;
+  body: any[]; // You might want to define a more specific type for body
 }
 
 const Blog: React.FC = () => {
