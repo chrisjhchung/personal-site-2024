@@ -2,7 +2,7 @@ import React from "react";
 import styles from "./BlogCard.module.css";
 import { useNavigate } from "react-router-dom";
 
-const BlogCard = ({ post }) => {
+const BlogCard = ({ post }: any) => {
   const navigate = useNavigate();
 
   const { title, name, publishedAt, categories, mainImageUrl, slug } = post;
@@ -16,7 +16,7 @@ const BlogCard = ({ post }) => {
       >
         <img src={mainImageUrl} alt={title} />
         <h3>{title}</h3>
-        {categories?.map((category, i) => (
+        {categories?.map((category: any, i: number) => (
           <span key={`${category}-${i}`} className={styles.categoryTag}>
             {category}
           </span>
