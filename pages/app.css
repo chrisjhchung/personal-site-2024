@@ -6,9 +6,10 @@ body {
   justify-content: center;
   width: 100vw;
   overflow-x: hidden;
+  padding: 0 32px;
   * {
-    font-family: ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji",
-      "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+    font-family: ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji',
+      'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   }
 }
 
@@ -22,6 +23,14 @@ body {
   margin-top: 32px;
   max-width: 576px;
   width: 100%;
+}
+
+@media (max-width: 650px) {
+  #__next {
+    margin-top: 32px;
+    width: 100%;
+    max-width: unset;
+  }
 }
 
 .skip-link {

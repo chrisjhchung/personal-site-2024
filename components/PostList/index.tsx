@@ -1,10 +1,10 @@
-import Link from "next/link";
-import { formatDate } from "@/lib/formatDate";
-import type { MDXFrontMatter } from "@/lib/types";
-import { Prose } from "@/components/Prose";
-import { cx, slugify } from "@/lib/utils";
-import { Tag } from "../Tag";
-import styles from "./index.module.scss";
+import Link from 'next/link';
+import { formatDate } from '@/lib/formatDate';
+import type { MDXFrontMatter } from '@/lib/types';
+import { Prose } from '@/components/Prose';
+import { cx, slugify } from '@/lib/utils';
+import { Tag } from '../Tag';
+import styles from './index.module.scss';
 
 interface PostListProps {
   posts: Array<MDXFrontMatter>;
