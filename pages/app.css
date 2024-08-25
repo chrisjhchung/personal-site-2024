@@ -28,7 +28,7 @@ body {
 @media (max-width: 650px) {
   #__next {
     margin-top: 32px;
-    width: 100%;
+    width: calc(100% - 64px);
     max-width: unset;
   }
 }
