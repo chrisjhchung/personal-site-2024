@@ -6,7 +6,6 @@ body {
   justify-content: center;
   width: 100vw;
   overflow-x: hidden;
-  padding: 0 32px;
   * {
     font-family: ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji',
       'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
@@ -20,6 +19,7 @@ body {
 }
 
 #__next {
+  padding: 0 32px;
   margin-top: 32px;
   max-width: 576px;
   width: 100%;
