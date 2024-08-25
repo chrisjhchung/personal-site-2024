@@ -1,11 +1,11 @@
-import type { GetStaticProps, NextPage } from "next";
-import Link from "next/link";
-import { getAllMdx } from "@/lib/mdx";
-import { MDXFrontMatter } from "@/lib/types";
-import { ArrowRight } from "react-feather";
-import styles from "./index.module.scss";
-import { Page } from "@/components/Page";
-import { Prose } from "@/components/Prose";
+import type { GetStaticProps, NextPage } from 'next';
+import Link from 'next/link';
+import { getAllMdx } from '@/lib/mdx';
+import { MDXFrontMatter } from '@/lib/types';
+import { ArrowRight } from 'react-feather';
+import styles from './index.module.scss';
+import { Page } from '@/components/Page';
+import { Prose } from '@/components/Prose';
 
 interface HomeProps {
   posts: Array<MDXFrontMatter>;
@@ -44,7 +44,7 @@ const Home: NextPage<HomeProps> = ({ posts }) => {
 };
 
 export const getStaticProps: GetStaticProps = async () => {
-  const mdxFiles = getAllMdx().map((post) => post["frontMatter"]);
+  const mdxFiles = getAllMdx().map((post) => post['frontMatter']);
   return {
     props: {
       posts: mdxFiles.slice(0, 5),
