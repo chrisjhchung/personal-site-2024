@@ -16,7 +16,7 @@ const Home: NextPage<HomeProps> = ({ posts }) => {
     <>
       <Page
         title="Chris Chung."
-        description="Yep, you guessed it—I'm Chris. Don't worry, I kept the title simple
+        description="Yep, you guessed it — I'm Chris. Don't worry, I kept the title simple
             just for you."
       >
         <Prose>
