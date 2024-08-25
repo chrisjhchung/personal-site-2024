@@ -5,6 +5,7 @@ body {
   align-items: center;
   justify-content: center;
   width: 100vw;
+  margin: 0;
   overflow-x: hidden;
   * {
     font-family: ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji',
