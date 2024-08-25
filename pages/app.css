@@ -1,0 +1,23 @@
+body {
+  background: black;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  * {
+    font-family: "Inter", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;
+  }
+}
+
+#__next {
+  margin-top: 32px;
+  max-width: 576px;
+  width: 100%;
+  * {
+    color: white;
+  }
+}
