@@ -5,6 +5,17 @@
     "Roboto Mono", "Oxygen Mono", "Ubuntu Monospace", "Source Code Pro",
     "Fira Mono", "Droid Sans Mono", "Courier New", monospace;
 
+  --color-bg1: rgb(0, 0, 0); /* Darker Red */
+  --color-bg2: #080705;
+  --color1: 90, 0, 0; /* Darker Red */
+  --color2: 153, 84, 0; /* Darker Orange */
+  --color3: 153, 99, 0; /* Darker Orange */
+  --color4: 132, 12, 36; /* Darker Crimson */
+  --color5: 123, 44, 44; /* Darker Indian Red */
+  --color-interactive: 128, 0, 0; /* Maroon */
+  --circle-size: 80%;
+  --blending: hard-light;
+
   --foreground-rgb: 0, 0, 0;
   --background-start-rgb: 214, 219, 220;
   --background-end-rgb: 255, 255, 255;
