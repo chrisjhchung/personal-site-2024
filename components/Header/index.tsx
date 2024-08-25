@@ -1,17 +1,16 @@
 import { useRouter } from "next/router";
-import Image from "next/image";
 import siteConfig from "@/data/siteConfig";
 import Link from "next/link";
-import { cx } from "@/lib/utils";
+import styles from "./index.module.scss";
 
 export const Header: React.FC = () => {
   const { pathname } = useRouter();
   return (
-    <header className="py-8 flex justify-between items-center">
+    <header className={styles.header}>
       <Link href="/" className="font-bold"></Link>
 
       <nav>
-        <ul className="flex space-x-8">
+        <ul>
           {siteConfig.nav.map((item, index) => {
             const isActive = item.href === pathname;
             return (
@@ -19,10 +18,6 @@ export const Header: React.FC = () => {
                 <Link
                   href={item.href}
                   aria-current={isActive ? "page" : undefined}
-                  className={cx(
-                    "text-gray-500 hover:text-gray-900",
-                    "dark:text-gray-400 dark:hover:text-gray-300"
-                  )}
                 >
                   {item.label}
                 </Link>

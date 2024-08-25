@@ -1,0 +1,32 @@
+.page {
+  p,
+  li {
+    color: #e5e5e5;
+  }
+}
+
+.header {
+  margin-top: 16px;
+}
+
+.title {
+  color: white;
+  font-size: 24px;
+  font-weight: 500;
+  margin: 0;
+}
+
+.time {
+  color: rgb(163, 163, 163);
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+}
+
+.description {
+  * {
+    color: rgb(163, 163, 163) !important;
+    font-size: 0.875rem;
+    line-height: 1.25rem;
+    font-style: italic;
+  }
+}

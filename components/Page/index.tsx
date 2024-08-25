@@ -4,6 +4,7 @@ import { formatDate } from "@/lib/formatDate";
 import siteConfig from "@/data/siteConfig";
 import { Prose } from "@/components/Prose";
 import { cx } from "@/lib/utils";
+import styles from "./index.module.scss";
 
 interface PageProps {
   date?: string;
@@ -28,7 +29,7 @@ export const Page: React.FC<PageProps> = ({
   // fixed https://github.com/vercel/next.js/discussions/38256
   const customTitle = `${metaTitle} - ${siteConfig.siteName}`;
   return (
-    <>
+    <div className={styles.page}>
       <Head>
         <title>{customTitle}</title>
         <meta name="og:url" content={siteConfig.siteUrl} />
@@ -40,23 +41,11 @@ export const Page: React.FC<PageProps> = ({
           content={`${siteConfig.siteUrl}${metaThumbnail}`}
         />
       </Head>
-      <header
-        className={cx(
-          "mb-8 pb-8 border-b",
-          "border-gray-200",
-          "dark:border-gray-700"
-        )}
-      >
-        {date ? (
-          <time
-            className={cx("block mb-2", "text-gray-500", "dark:text-gray-400")}
-          >
-            {formatDate(date)}
-          </time>
-        ) : null}
-        <h1 className="font-bold text-3xl">{title}</h1>
+      <header className={styles.header}>
+        <h1 className={styles.title}>{title}</h1>
+        {date ? <time className={styles.time}>{formatDate(date)}</time> : null}
         {description ? (
-          <div className="mt-4">
+          <div className={styles.description}>
             <Prose>
               {typeof description === "string" ? (
                 <p>{description}</p>
@@ -68,6 +57,6 @@ export const Page: React.FC<PageProps> = ({
         ) : null}
       </header>
       {children}
-    </>
+    </div>
   );
 };

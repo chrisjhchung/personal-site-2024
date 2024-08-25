@@ -3,21 +3,22 @@ import { getAllMdx } from "@/lib/mdx";
 import { MDXFrontMatter } from "@/lib/types";
 import { Page } from "@/components/Page";
 import { PostList } from "@/components/PostList";
-
+import styles from "./index.module.scss";
+import { Prose } from "@/components/Prose";
 interface PostsProps {
   posts: Array<MDXFrontMatter>;
 }
 
 const Posts: NextPage<PostsProps> = ({ posts }) => {
   return (
-    <>
+    <div className={styles.container}>
       <Page
         title="Posts"
-        description="Lorem ipsum dolor sit amet consectetur adipisicing elit."
+        description="(This is the dump that I was talking about in the home page.)"
       >
         <PostList posts={posts} />
       </Page>
-    </>
+    </div>
   );
 };
 

@@ -1,0 +1,18 @@
+.prose {
+  * {
+    line-height: 1.5;
+  }
+
+  pre:has(code) {
+    * {
+      font-family: 'Geist Mono';
+      font-size: 12px;
+    }
+    text-wrap: wrap;
+    outline: 1px solid #30363d;
+    border-radius: 4px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+}

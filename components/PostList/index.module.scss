@@ -1,0 +1,28 @@
+.posts {
+  display: flex;
+  gap: 32px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.posts li {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 0;
+}
+
+.posts .time {
+  color: #d4d4d4;
+}
+
+.posts .title {
+  color: white;
+}
+
+.posts .title a {
+  color: white;
+  text-decoration: none;
+  font-weight: 400;
+}

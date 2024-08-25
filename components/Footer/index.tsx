@@ -2,19 +2,13 @@ import { Twitter, Instagram, GitHub, Linkedin } from "react-feather";
 import siteConfig from "@/data/siteConfig";
 import { cx } from "@/lib/utils";
 import { ThemeSelect } from "@/components/ThemeSelect";
+import styles from "./index.module.scss";
 
 const iconProps = { className: "w-4 h-4" };
 
-const SOCIAL_ICONS: { [key: string]: React.ReactNode } = {
-  twitter: <Twitter {...iconProps} />,
-  instagram: <Instagram {...iconProps} />,
-  github: <GitHub {...iconProps} />,
-  linkedin: <Linkedin {...iconProps} />,
-};
-
 export const Footer: React.FC = () => {
   return (
-    <footer className="mt-auto py-8">
+    <footer className={styles.footer}>
       {siteConfig.social ? (
         <ul className="flex justify-center space-x-4">
           {Object.entries(siteConfig.social).map(([key, href]) => {
@@ -29,16 +23,26 @@ export const Footer: React.FC = () => {
                   )}
                   title={key}
                 >
-                  {SOCIAL_ICONS[key]}
+                  <svg
+                    width="12"
+                    height="12"
+                    viewBox="0 0 12 12"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M2.07102 11.3494L0.963068 10.2415L9.2017 1.98864H2.83807L2.85227 0.454545H11.8438V9.46023H10.2955L10.3097 3.09659L2.07102 11.3494Z"
+                      fill="currentColor"
+                    ></path>
+                  </svg>
+                  {key}
                 </a>
               </li>
             );
           })}
         </ul>
       ) : null}
-      <div className="mt-8 flex justify-center">
-        <ThemeSelect />
-      </div>
+      <p>© 2024 Chris Chung</p>
     </footer>
   );
 };
