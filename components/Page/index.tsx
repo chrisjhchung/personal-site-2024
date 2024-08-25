@@ -1,10 +1,9 @@
-import Head from "next/head";
-import { onlyText } from "react-children-utilities";
-import { formatDate } from "@/lib/formatDate";
-import siteConfig from "@/data/siteConfig";
-import { Prose } from "@/components/Prose";
-import { cx } from "@/lib/utils";
-import styles from "./index.module.scss";
+import Head from 'next/head';
+import { onlyText } from 'react-children-utilities';
+import { formatDate } from '@/lib/formatDate';
+import siteConfig from '@/data/siteConfig';
+import { Prose } from '@/components/Prose';
+import styles from './index.module.scss';
 
 interface PageProps {
   date?: string;
@@ -26,12 +25,10 @@ export const Page: React.FC<PageProps> = ({
     ? onlyText(description)
     : siteConfig.siteDescription;
   const metaThumbnail = thumbnail ? thumbnail : siteConfig.siteThumbnail;
-  // fixed https://github.com/vercel/next.js/discussions/38256
-  const customTitle = `${metaTitle} - ${siteConfig.siteName}`;
   return (
     <div className={styles.page}>
       <Head>
-        <title>{customTitle}</title>
+        <title>{siteConfig.siteName}</title>
         <meta name="og:url" content={siteConfig.siteUrl} />
         <meta property="og:title" content={metaTitle} />
         <meta name="description" content={metaDescription} />
@@ -47,7 +44,7 @@ export const Page: React.FC<PageProps> = ({
         {description ? (
           <div className={styles.description}>
             <Prose>
-              {typeof description === "string" ? (
+              {typeof description === 'string' ? (
                 <p>{description}</p>
               ) : (
                 description
