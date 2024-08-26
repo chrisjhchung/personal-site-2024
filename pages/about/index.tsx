@@ -1,6 +1,6 @@
-import type { NextPage } from "next";
-import { Page } from "@/components/Page";
-import { Prose } from "@/components/Prose";
+import type { NextPage } from 'next';
+import { Page } from '@/components/Page';
+import { Prose } from '@/components/Prose';
 
 const About: NextPage = () => {
   return (
@@ -34,7 +34,7 @@ const About: NextPage = () => {
             pays off. Who knew?
           </p>
           <p>
-            Speaking of sports, I played professional football in Hong Kong abd
+            Speaking of sports, I played professional football in Hong Kong and
             represented the Hong Kong’s National Youth Teams since 2014. I’ve
             even got a UEFA C coaching certificate, which basically means I can
             yell at players to hustle more—now with an official stamp of
