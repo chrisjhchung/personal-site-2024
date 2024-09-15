@@ -6,8 +6,20 @@ interface ConsoleProps {
   setTheme: (theme: string) => void;
 }
 
+interface ConsoleState {
+  position: { x: number; y: number };
+  isDragging: boolean;
+  dragOffset: { x: number; y: number };
+  isVisible: boolean;
+  inputValue: string;
+  consoleOutput: string[];
+  isFocused: boolean;
+  isPinned: boolean;
+  isOverflowing: boolean;
+}
+
 const Console: React.FC<ConsoleProps> = ({ setTheme }) => {
-  const [state, setState] = useState({
+  const [state, setState] = useState<ConsoleState>({
     position: { x: 0, y: 0 },
     isDragging: false,
     dragOffset: { x: 0, y: 0 },
