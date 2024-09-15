@@ -11,9 +11,6 @@
     text-align: justify;
   }
   a {
-    @include themed() {
-      color: theme-color($theme, 'link');
-    }
     text-decoration: underline;
   }
 }
