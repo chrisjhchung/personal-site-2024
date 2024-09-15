@@ -199,17 +199,33 @@ const Console: React.FC<ConsoleProps> = ({ setTheme }) => {
     updatePosition,
   ]);
 
+  const callbacks = {
+    close: () => {
+      setState((prev) => {
+        return { ...prev, isVisible: false };
+      });
+    },
+    clear: () => {
+      setState((prev) => {
+        return { ...prev, consoleOutput: [] };
+      });
+    },
+  };
+
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (state.inputValue.trim()) {
-      const response = handleCommand(state.inputValue.trim(), setTheme);
+      const response = handleCommand(
+        state.inputValue.trim(),
+        setTheme,
+        callbacks,
+      );
       setState((prev) => ({
         ...prev,
-        consoleOutput: [
-          ...prev.consoleOutput,
-          `> ${prev.inputValue}`,
-          response,
-        ],
+        consoleOutput:
+          prev.inputValue === 'clear'
+            ? [...prev.consoleOutput, response]
+            : [...prev.consoleOutput, `> ${prev.inputValue}`, response],
         inputValue: '',
       }));
       setTimeout(() => {

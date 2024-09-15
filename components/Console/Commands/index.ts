@@ -1,13 +1,18 @@
 type CommandHandler = (
   args: string[],
   setTheme: (theme: string) => void,
+  callbacks: { [key: string]: () => void },
 ) => string;
 
 const commands: { [key: string]: CommandHandler } = {
   hello: () => 'Hello! How can I help you?',
   echo: (args) => args.join(' '),
   date: () => new Date().toLocaleString(),
-  help: () => 'Available commands: hello, echo, date, help, theme',
+  help: () => `help        : Displays this help message
+theme        : Changes the theme of the site
+close        : Closes the terminal
+clear        : Clears the terminal
+`,
   theme: (args, setTheme) => {
     const currentTheme = localStorage.getItem('theme') || 'dark';
     const availableThemes = [
@@ -33,17 +38,30 @@ const commands: { [key: string]: CommandHandler } = {
         .join('\n\t')}`;
     }
   },
+  close: (args, setTheme, callbacks) => {
+    if (callbacks && 'close' in callbacks) {
+      callbacks.close();
+    }
+    return 'Closing terminal...';
+  },
+  clear: (args, setTheme, callbacks) => {
+    if (callbacks && 'close' in callbacks) {
+      callbacks.clear();
+    }
+    return '';
+  },
 };
 
 export function handleCommand(
   input: string,
   setTheme: (theme: string) => void,
+  callbacks: { [key: string]: () => void },
 ): string {
   const [command, ...args] = input.trim().split(/\s+/);
   const handler = commands[command.toLowerCase()];
 
   if (handler) {
-    return handler(args, setTheme);
+    return handler(args, setTheme, callbacks);
   } else {
     return `Unknown command: ${command}. Type 'help' for a list of commands.`;
   }

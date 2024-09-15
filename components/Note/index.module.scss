@@ -1,0 +1,18 @@
+@import '../../pages/_variables.scss';
+
+.Note {
+  @include themed {
+    background-color: theme-color($theme, bg-secondary); // Use theme variable
+    color: theme-color($theme, text-primary); // Use theme variable
+    padding: 8px 16px;
+    border-radius: 4px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    .emoji {
+      font-size: 24px;
+      margin-right: 10px;
+    }
+    p {
+      margin: 0;
+    }
+  }
+}
