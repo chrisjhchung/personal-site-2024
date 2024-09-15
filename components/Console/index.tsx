@@ -39,10 +39,19 @@ const Console: React.FC<ConsoleProps> = ({ setTheme }) => {
   const inputWrapperRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth <= 650 && state.isVisible) {
+        setState((prev) => ({ ...prev, isPinned: true }));
+        setIsMobile(true);
+      } else if (window.innerWidth > 650) {
+        setState((prev) => ({ ...prev, isPinned: false }));
+        setIsMobile(false);
+      }
+    };
     const handleKeyPress = (e: KeyboardEvent) => {
       if (
         e.key.toLowerCase() === 'c' &&
-        (!state.isVisible || (state.isVisible && !state.isFocused))
+        (!state.isVisible || !state.isFocused)
       ) {
         e.preventDefault();
         if (window.innerWidth < 650) {
@@ -56,26 +65,13 @@ const Console: React.FC<ConsoleProps> = ({ setTheme }) => {
         }
       }
     };
-    window.addEventListener('keydown', handleKeyPress);
-    if (state.isFocused && inputRef.current) {
-      inputRef.current.focus();
-    }
-    return () => window.removeEventListener('keydown', handleKeyPress);
-  }, [state.isFocused]);
-
-  useEffect(() => {
-    const handleResize = () => {
-      if (window.innerWidth <= 650 && state.isVisible) {
-        setState((prev) => ({ ...prev, isPinned: true }));
-        setIsMobile(true);
-      } else if (window.innerWidth > 650) {
-        setState((prev) => ({ ...prev, isPinned: false }));
-        setIsMobile(false);
-      }
-    };
     window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
-  }, [state.isVisible]);
+    window.addEventListener('keydown', handleKeyPress);
+    return () => {
+      window.removeEventListener('resize', handleResize);
+      window.removeEventListener('keydown', handleKeyPress);
+    };
+  }, [state.isVisible, state.isFocused]);
 
   useEffect(() => {
     const handleClickOutside = (e: MouseEvent) => {
@@ -428,7 +424,10 @@ const Console: React.FC<ConsoleProps> = ({ setTheme }) => {
       <div className={styles.consoleFooter}>
         <button
           onClick={() =>
-            setState((prev) => ({ ...prev, isVisible: !prev.isVisible }))
+            setState((prev) => ({
+              ...prev,
+              isVisible: !prev.isVisible,
+            }))
           }
         >
           Console [C]

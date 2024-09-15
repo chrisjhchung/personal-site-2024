@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import styles from './index.module.scss';
 import hljs from 'highlight.js/lib/core';
-import 'highlight.js/styles/github-dark.css';
+import 'highlight.js/styles/stackoverflow-dark.css';
 
 import javascript from 'highlight.js/lib/languages/javascript';
 import typescript from 'highlight.js/lib/languages/typescript';
