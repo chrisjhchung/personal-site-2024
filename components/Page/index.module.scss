@@ -9,6 +9,12 @@
     font-weight: 300;
     line-height: 1.75;
   }
+  a {
+    @include themed() {
+      color: theme-color($theme, 'link');
+    }
+    text-decoration: underline;
+  }
 }
 
 .header {
