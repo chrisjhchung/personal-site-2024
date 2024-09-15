@@ -1,6 +1,14 @@
+@import './_variables.scss';
+
 .container {
+  @include themed() {
+    color: theme-color($theme, 'text-primary');
+  }
+
   h1 {
-    color: white;
+    @include themed() {
+      color: theme-color($theme, 'close-button');
+    }
     font-size: 24px;
     font-weight: 500;
     margin-bottom: 32px;
@@ -9,5 +17,8 @@
     line-height: 24px;
     font-size: 16px;
     font-weight: 300;
+    @include themed() {
+      color: theme-color($theme, 'text-secondary');
+    }
   }
 }

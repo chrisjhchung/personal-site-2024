@@ -1,14 +1,24 @@
+@import '../_variables.scss';
+
 .container {
-  color: white;
+  @include themed() {
+    color: theme-color($theme, 'text-primary');
+  }
+
   h1 {
-    color: white;
+    @include themed() {
+      color: theme-color($theme, 'text-primary');
+    }
     font-size: 24px;
     font-weight: 500;
   }
+
   * {
     line-height: 24px;
     font-size: 16px;
     font-weight: 300;
-    color: #e5e5e5;
+    @include themed() {
+      color: theme-color($theme, 'text-secondary');
+    }
   }
 }

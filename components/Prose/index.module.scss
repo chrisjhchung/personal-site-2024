@@ -1,3 +1,5 @@
+@import '../../pages/_variables.scss';
+
 .prose {
   * {
     line-height: 1.5;
@@ -9,7 +11,6 @@
       font-size: 12px;
     }
     text-wrap: wrap;
-    outline: 1px solid #30363d;
     border-radius: 4px;
     display: flex;
     justify-content: center;

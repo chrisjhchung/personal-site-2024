@@ -1,3 +1,5 @@
+@import '../../pages/_variables.scss';
+
 .footer {
   margin-top: 32px;
   display: flex;
@@ -5,7 +7,9 @@
   gap: 2rem;
 
   p {
-    color: #d4d4d4;
+    @include themed() {
+      color: theme-color($theme, 'text-secondary');
+    }
   }
 
   ul {
@@ -21,12 +25,15 @@
       display: flex;
       gap: 0.5rem;
       align-items: center;
-      color: #d4d4d4;
-      transition: all 0.5s ease;
+      @include themed() {
+        color: theme-color($theme, 'text-secondary');
+      }
     }
 
     a:hover {
-      color: white;
+      @include themed() {
+        color: theme-color($theme, 'text-primary');
+      }
       transition: all 0.5s ease;
     }
   }

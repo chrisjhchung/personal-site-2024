@@ -1,26 +1,58 @@
-import { ThemeProvider } from 'next-themes';
+import { useState, useEffect } from 'react';
 import type { AppProps } from 'next/app';
 import { Header } from '@/components/Header';
 import { Footer } from '@/components/Footer';
-import './app.css';
+import './app.scss';
 import { GeistSans } from 'geist/font/sans';
 import { GeistMono } from 'geist/font/mono';
-// Using ES6 import syntax
+import Console from '@/components/Console';
+
+// Custom hook for theme management
+function useCustomTheme() {
+  const [theme, setTheme] = useState('light');
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+    const savedTheme = localStorage.getItem('theme') || 'light';
+    setTheme(savedTheme);
+    document.documentElement.classList.add(`theme-${savedTheme}`);
+  }, []);
+
+  useEffect(() => {
+    if (mounted) {
+      localStorage.setItem('theme', theme);
+      document.documentElement.className = '';
+      document.documentElement.classList.add(`theme-${theme}`);
+    }
+  }, [theme, mounted]);
+
+  return { theme, mounted, setTheme };
+}
 
 function MyApp({ Component, pageProps }: AppProps) {
+  const { theme, mounted, setTheme } = useCustomTheme();
+
+  if (!mounted) {
+    return null;
+  }
+
   return (
-    <div>
-      <a href="#main" className="skip-link">
-        Skip to main content
-      </a>
-      <div className="content">
-        <Header />
-        <main id="main">
-          <Component {...pageProps} />
-        </main>
-        <Footer />
+    <>
+      <div className={`theme-${theme}`}>
+        <a href="#main" className="skip-link">
+          Skip to main content
+        </a>
+        <div className="content">
+          <Header />
+          <main id="main">
+            <Component {...pageProps} />
+          </main>
+          <Footer />
+        </div>
+        <Console setTheme={setTheme} />
       </div>
-    </div>
+    </>
   );
 }
 

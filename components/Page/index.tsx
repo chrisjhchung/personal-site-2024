@@ -4,6 +4,7 @@ import { formatDate } from '@/lib/formatDate';
 import siteConfig from '@/data/siteConfig';
 import { Prose } from '@/components/Prose';
 import styles from './index.module.scss';
+import Console from '../Console';
 
 interface PageProps {
   date?: string;

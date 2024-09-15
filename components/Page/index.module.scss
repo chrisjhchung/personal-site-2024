@@ -1,9 +1,13 @@
+@import '../../pages/_variables.scss';
+
 .page {
   p,
   li {
-    color: #e5e5e5;
+    @include themed() {
+      color: theme-color($theme, 'text-primary');
+    }
     font-weight: 300;
-    line-height: 1, 75;
+    line-height: 1.75;
   }
 }
 
@@ -12,21 +16,27 @@
 }
 
 .title {
-  color: white;
+  @include themed() {
+    color: theme-color($theme, 'text-primary');
+  }
   font-size: 24px;
   font-weight: 500;
   margin: 0;
 }
 
 .time {
-  color: rgb(163, 163, 163);
+  @include themed() {
+    color: theme-color($theme, 'text-secondary');
+  }
   font-size: 0.875rem;
   line-height: 1.25rem;
 }
 
 .description {
   * {
-    color: rgb(163, 163, 163) !important;
+    @include themed() {
+      color: theme-color($theme, 'text-secondary') !important;
+    }
     font-size: 0.875rem;
     line-height: 1.25rem;
     font-style: italic;

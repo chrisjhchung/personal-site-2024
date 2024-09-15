@@ -14,6 +14,7 @@ export type SiteConfig = {
 };
 
 export type MDXFrontMatter = {
+  published: boolean;
   slug: string;
   title: string;
   description?: string;
