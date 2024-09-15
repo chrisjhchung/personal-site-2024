@@ -9,12 +9,12 @@ import Console from '@/components/Console';
 
 // Custom hook for theme management
 function useCustomTheme() {
-  const [theme, setTheme] = useState('light');
+  const [theme, setTheme] = useState('dark');
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
     setMounted(true);
-    const savedTheme = localStorage.getItem('theme') || 'light';
+    const savedTheme = localStorage.getItem('theme') || 'dark';
     setTheme(savedTheme);
     document.documentElement.classList.add(`theme-${savedTheme}`);
   }, []);
