@@ -4,13 +4,15 @@ import { formatDate } from '@/lib/formatDate';
 import siteConfig from '@/data/siteConfig';
 import { Prose } from '@/components/Prose';
 import styles from './index.module.scss';
-import Console from '../Console';
+import { Tag } from '../Tag/Tag';
 
 interface PageProps {
   date?: string;
   title: string | React.ReactNode;
   description?: string | React.ReactNode;
   thumbnail?: string;
+  part?: number;
+  tags?: string[];
   children?: React.ReactNode;
 }
 
@@ -19,6 +21,8 @@ export const Page: React.FC<PageProps> = ({
   title,
   description,
   thumbnail,
+  part,
+  tags,
   children,
 }) => {
   const metaTitle = onlyText(title);
@@ -40,8 +44,18 @@ export const Page: React.FC<PageProps> = ({
         />
       </Head>
       <header className={styles.header}>
-        <h1 className={styles.title}>{title}</h1>
+        <h1 className={styles.title}>
+          {title}
+          {part && <span className={styles.chip}>Part {part}</span>}
+        </h1>
         {date ? <time className={styles.time}>{formatDate(date)}</time> : null}
+        {tags && (
+          <div className={styles.tags}>
+            {tags.map((tag, index) => (
+              <Tag key={index}>{tag}</Tag>
+            ))}
+          </div>
+        )}
         {description ? (
           <div className={styles.description}>
             <Prose>

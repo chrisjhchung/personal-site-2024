@@ -22,6 +22,8 @@
   font-size: 24px;
   font-weight: 500;
   margin: 0;
+  display: flex;
+  align-items: center;
 }
 
 .time {
@@ -41,4 +43,25 @@
     line-height: 1.25rem;
     font-style: italic;
   }
+}
+.tags {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 14px;
+}
+
+.chip {
+  @include themed() {
+    background-color: theme-color($theme, 'bg-secondary');
+    color: theme-color($theme, 'text-primary');
+  }
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 12px;
+  font-weight: 500;
+  margin-left: 8px;
 }

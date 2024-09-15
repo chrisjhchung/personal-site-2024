@@ -11,6 +11,7 @@ import { components } from '@/components/MDX';
 import { Prose } from '@/components/Prose';
 import { cx } from '@/lib/utils';
 import remarkGfm from 'remark-gfm';
+
 interface ContextProps extends ParsedUrlQuery {
   slug: string;
 }

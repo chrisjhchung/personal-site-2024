@@ -36,3 +36,15 @@
   text-decoration: none;
   font-weight: 400;
 }
+
+.chip {
+  @include themed() {
+    background-color: theme-color($theme, 'bg-secondary');
+    color: theme-color($theme, 'text-primary');
+  }
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 12px;
+  font-weight: 500;
+  margin-left: 8px;
+}

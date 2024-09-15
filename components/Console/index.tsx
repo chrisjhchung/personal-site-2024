@@ -97,6 +97,7 @@ const Console: React.FC<ConsoleProps> = ({ setTheme }) => {
     if (state.isVisible && state.isFocused && inputRef.current) {
       inputRef.current.focus();
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [state.isVisible, state.isFocused]);
 
   useEffect(() => {

@@ -1,0 +1,17 @@
+@import '../../pages/_variables.scss';
+
+.chip {
+  @include themed() {
+    background-color: theme-color($theme, 'bg-secondary');
+    color: theme-color($theme, 'text-primary');
+  }
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 12px;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+
+  width: fit-content;
+}
