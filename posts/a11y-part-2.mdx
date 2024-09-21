@@ -1,0 +1,52 @@
+---
+title: "A11y - Contrast"
+description: "Accessibility. What is it? and why should we care?"
+date: "2024-09-21"
+part: 2
+tags: ['human computer interaction','design']
+published: false
+---
+
+When designing, we often focus on how visually appealing two colors are together. However, we frequently overlook the contrast difference between them. The more similar two colors are, the harder it is to read.
+
+Let's consider an example: which of these two texts are easier to read?
+
+<div style={{
+    display: "flex",
+    flexDirection: "row",
+    justifyContent: "space-around",
+    gap: "12px",
+    width: "100%"
+}}>
+    <div style={{
+        background: "white",
+        height: "180px",
+        borderRadius: "8px",
+        width: "180px",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center"
+    }}>
+        <p style={{color: "black"}}>Example text A</p>
+    </div>
+    <div style={{
+        background: "white",
+        height: "180px",
+        borderRadius: "8px",
+        width: "180px",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center"
+    }}>
+        <p style={{color: "#f2f2f2"}}>Example text B</p>
+    </div>
+
+</div>
+
+You've likely seen one of these photos online before
+
+<center>
+<img src="https://i.pinimg.com/236x/12/92/c2/1292c23b266b61cda01cf54db6ff7a3f.jpg" alt="Colour blind test with Kermit the frog" style={{borderRadius: "8px"}} />
+</center>
+
+The classic colour blindness test! While these can be entertaining, and sometimes (like in my case) make you wonder if you are actually colour blind, it actually highlights an important accessibility consideration.
